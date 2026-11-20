@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]; then
+    if ! id ridgewarden-linkdoctor >/dev/null 2>&1; then
+        adduser --system --group --home /var/lib/ridgewarden-linkdoctor --no-create-home ridgewarden-linkdoctor
+    fi
+    adduser ridgewarden-linkdoctor ridgewarden >/dev/null
+    install -d -m 750 -o ridgewarden-linkdoctor -g ridgewarden-linkdoctor /var/lib/ridgewarden-linkdoctor
+    # an upgrade from when apps ran as the core's user leaves files it owned
+    chown -R ridgewarden-linkdoctor:ridgewarden-linkdoctor /var/lib/ridgewarden-linkdoctor
+    if [ ! -f /etc/ridgewarden/linkdoctor.toml ]; then
+        /usr/bin/ridgewarden-linkdoctor --config /etc/ridgewarden/linkdoctor.toml init
+    fi
+    # its webhook URLs and passphrases are for this app only, not the other apps
+    # in the ridgewarden group
+    chown root:ridgewarden-linkdoctor /etc/ridgewarden/linkdoctor.toml
+    chmod 640 /etc/ridgewarden/linkdoctor.toml
+    if [ -d /run/systemd/system ]; then
+        systemctl daemon-reload
+        # start once the core is set up; until then there's nothing to follow
+        if [ -f /etc/ridgewarden/ridgewarden.toml ]; then
+            systemctl enable ridgewarden-linkdoctor >/dev/null 2>&1 || true
+            systemctl restart ridgewarden-linkdoctor || true
+        fi
+    fi
+fi

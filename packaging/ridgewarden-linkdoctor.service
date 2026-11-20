@@ -1,0 +1,23 @@
+[Unit]
+Description=ridgewarden-linkdoctor, a Link Doctor for AREDN meshes
+Documentation=https://github.com/Londopy/ridgewarden-linkdoctor
+After=network-online.target ridgewarden.service
+Wants=network-online.target
+
+[Service]
+# its own user, in the core's group: it can read the core's local.token, not its station key
+User=ridgewarden-linkdoctor
+Group=ridgewarden-linkdoctor
+SupplementaryGroups=ridgewarden
+ExecStart=/usr/bin/ridgewarden-linkdoctor --config /etc/ridgewarden/linkdoctor.toml run
+Restart=on-failure
+RestartSec=10
+# email alerts through Postfix need a drop-in for its spool (see the README); msmtp works as is
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/ridgewarden-linkdoctor
+
+[Install]
+WantedBy=multi-user.target
