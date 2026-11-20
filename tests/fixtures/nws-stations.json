@@ -1,0 +1,44 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "id": "https://api.weather.gov/stations/KSBP",
+   "type": "Feature",
+   "properties": {
+    "@id": "https://api.weather.gov/stations/KSBP",
+    "stationIdentifier": "KSBP",
+    "name": "San Luis Obispo, San Luis Obispo County-Mc Chesney Field",
+    "distance": {
+     "unitCode": "wmoUnit:m",
+     "value": 6719.1373100791
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/stations/OX1MB",
+   "type": "Feature",
+   "properties": {
+    "@id": "https://api.weather.gov/stations/OX1MB",
+    "stationIdentifier": "OX1MB",
+    "name": "Morro Bay Harbor",
+    "distance": {
+     "unitCode": "wmoUnit:m",
+     "value": 19740.073854251
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/stations/KPRB",
+   "type": "Feature",
+   "properties": {
+    "@id": "https://api.weather.gov/stations/KPRB",
+    "stationIdentifier": "KPRB",
+    "name": "Paso Robles Municipal Airport",
+    "distance": {
+     "unitCode": "wmoUnit:m",
+     "value": 42024.806425418
+    }
+   }
+  }
+ ]
+}

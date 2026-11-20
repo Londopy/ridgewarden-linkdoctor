@@ -1,0 +1,14 @@
+{
+ "id": "https://api.weather.gov/points/35.3,-120.66",
+ "type": "Feature",
+ "properties": {
+  "@id": "https://api.weather.gov/points/35.3,-120.66",
+  "gridId": "LOX",
+  "gridX": 78,
+  "gridY": 115,
+  "forecast": "https://api.weather.gov/gridpoints/LOX/78,115/forecast",
+  "forecastHourly": "https://api.weather.gov/gridpoints/LOX/78,115/forecast/hourly",
+  "forecastGridData": "https://api.weather.gov/gridpoints/LOX/78,115",
+  "observationStations": "https://api.weather.gov/gridpoints/LOX/78,115/stations"
+ }
+}
